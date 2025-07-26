@@ -1,0 +1,133 @@
+syntax = "proto3";
+
+// Defines the Protobuf package for this file.
+// This forms the logical namespace for your messages and services.
+package e_wallet_microservices_v2;
+
+// Defines the Go package where the generated code will reside.
+// 'e-wallet-microservices/lib/protos/public/wallet' is the import path for Go.
+// ';wallet' specifies the Go package name as 'wallet' within that path.
+option go_package = "e_wallet_microservices_v2/lib/protos/public/wallet;wallet";
+
+// Core Protobuf imports
+
+// import "google/protobuf/descriptor.proto"; // Removed: not needed
+// Google API annotations for HTTP mapping
+import "google/api/annotations.proto"; // THIS IS CORRECTLY IMPORTED
+
+
+// gRPC-Gateway OpenAPI (Swagger) annotations
+import "protoc-gen-openapiv2/options/annotations.proto";
+import "protoc-gen-openapiv2/options/openapiv2.proto"; // Required for (openapiv2_swagger) and other OpenAPI specific options
+
+// Define OpenAPI (Swagger) documentation for the entire file/service.
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "Aplikasimlm.com (Wallet API Endpoint)";
+    version: "1.0";
+    contact: {
+      name: "Aplikasimlm.com";
+      url: "https://github.com/tovankamil"; // GitHub profile is fine as URL
+      email: "tovan.kamil@gmail.com";
+    };
+  };
+
+  schemes: [HTTP, HTTPS]; // It's good practice to list both
+  consumes: ["application/json"];
+  produces: ["application/json"];
+
+  // Example for security definition (if you need it for authentication)
+  // security_definitions: {
+  //    security: {
+  //      key: "BearerAuth";
+  //      value: {
+  //        type: API_KEY;
+  //        name: "Authorization";
+  //        in: HEADER;
+  //        description: "Bearer token for authentication";
+  //      };
+  //    };
+  // };
+  // security: {
+  //    security_requirement: {
+  //      key: "BearerAuth";
+  //      value: [];
+  //    };
+  // };
+};
+
+service WalletService {
+  // GetUserBalance retrieves the current balance for a user.
+  rpc GetUserBalance(GetBalanceRequest) returns (GetBalanceResponse) {
+    option (google.api.http) = { // THIS IS WHERE THE ERROR IS REPORTED
+      // For GET with a request body field, map it to a query parameter.
+        get: "/v1/wallet/balance"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Get User Balance Info";
+      operation_id: "GetUserBalance";
+      tags: ["balance"]; // Tags should be an array
+      responses: {
+        key: "200"
+        value: {
+          description: "Successful response";
+          schema: {
+            json_schema: {
+              // Reference the response message type
+              ref: ".e_wallet_microservices_v2.GetBalanceResponse";
+            }
+          }
+        }
+      };
+    };
+  }
+
+  // UpdateUserBalance handles deposits, withdrawals, or other balance adjustments.
+  rpc UpdateUserBalance(UpdateBalanceRequest) returns (UpdateBalanceResponse) {
+    option (google.api.http) = {
+      post: "/v1/wallet/update",
+      body: "*" // Means the entire request message is the HTTP request body
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Update User Balance Info";
+      operation_id: "UpdateUserBalance";
+      tags: ["balance"]; // Tags should be an array
+      responses: {
+        key: "200"
+        value: {
+          description: "Successful response";
+          schema: {
+            json_schema: {
+              // Reference the response message type
+              ref: ".e_wallet_microservices_v2.UpdateBalanceResponse";
+            }
+          }
+        }
+      };
+    };
+  }
+}
+
+// Request message for updating user balance
+message UpdateBalanceRequest {
+  string user_id = 1;
+  double amount = 2; // Amount to add or deduct
+}
+
+// Response message for updating user balance
+message UpdateBalanceResponse {
+  string message = 1;
+  bool success = 2;
+  double final_balance = 3;
+}
+
+// Request message for getting user balance
+message GetBalanceRequest {
+  string user_id = 1;
+}
+
+// Response message for getting user balance
+message GetBalanceResponse {
+  string user_id = 1;
+  double balance = 2;
+}

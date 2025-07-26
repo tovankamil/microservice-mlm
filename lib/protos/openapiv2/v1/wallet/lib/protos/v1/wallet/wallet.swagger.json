@@ -1,0 +1,167 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Aplikasimlm.com (Wallet API Endpoint)",
+    "description": "Defines the Protobuf package for this file.\nThis forms the logical namespace for your messages and services.",
+    "version": "1.0",
+    "contact": {
+      "name": "Aplikasimlm.com",
+      "url": "https://github.com/tovankamil",
+      "email": "tovan.kamil@gmail.com"
+    }
+  },
+  "tags": [
+    {
+      "name": "WalletService"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/wallet/balance": {
+      "get": {
+        "summary": "Get User Balance Info",
+        "operationId": "GetUserBalance",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "schema": {
+              "$ref": "#/definitions/e_wallet_microservices_v2GetBalanceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "balance"
+        ]
+      }
+    },
+    "/v1/wallet/update": {
+      "post": {
+        "summary": "Update User Balance Info",
+        "operationId": "UpdateUserBalance",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "schema": {
+              "$ref": "#/definitions/e_wallet_microservices_v2UpdateBalanceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/e_wallet_microservices_v2UpdateBalanceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "balance"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "e_wallet_microservices_v2GetBalanceResponse": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "balance": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "title": "Response message for getting user balance"
+    },
+    "e_wallet_microservices_v2UpdateBalanceRequest": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number",
+          "format": "double",
+          "title": "Amount to add or deduct"
+        }
+      },
+      "title": "Request message for updating user balance"
+    },
+    "e_wallet_microservices_v2UpdateBalanceResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        },
+        "finalBalance": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "title": "Response message for updating user balance"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}
