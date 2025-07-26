@@ -19,5 +19,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("failed to parse config, %#v", err)
 	}
+	// Initialize the service
 	startService(cfg)
 }
