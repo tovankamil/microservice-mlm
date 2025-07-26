@@ -15,4 +15,9 @@ func main() {
 	log.SetLogger(logger)
 	log.Info("Starting wallet service...")
 
+	cfg, err := InitConfig("config.wallet")
+	if err != nil {
+		log.Fatalf("failed to parse config, %#v", err)
+	}
+	startService(cfg)
 }

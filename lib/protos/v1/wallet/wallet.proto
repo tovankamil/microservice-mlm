@@ -14,7 +14,7 @@ option go_package = "e_wallet_microservices_v2/lib/protos/public/wallet;wallet";
 // import "google/protobuf/descriptor.proto"; // Removed: not needed
 // Google API annotations for HTTP mapping
 import "google/api/annotations.proto"; // THIS IS CORRECTLY IMPORTED
-
+import "google/protobuf/descriptor.proto";
 
 // gRPC-Gateway OpenAPI (Swagger) annotations
 import "protoc-gen-openapiv2/options/annotations.proto";

@@ -14,6 +14,7 @@ import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	_ "google.golang.org/protobuf/types/descriptorpb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -242,7 +243,7 @@ var File_lib_protos_v1_wallet_wallet_proto protoreflect.FileDescriptor
 
 const file_lib_protos_v1_wallet_wallet_proto_rawDesc = "" +
 	"\n" +
-	"!lib/protos/v1/wallet/wallet.proto\x12\x19e_wallet_microservices_v2\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a,protoc-gen-openapiv2/options/openapiv2.proto\"G\n" +
+	"!lib/protos/v1/wallet/wallet.proto\x12\x19e_wallet_microservices_v2\x1a\x1cgoogle/api/annotations.proto\x1a google/protobuf/descriptor.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a,protoc-gen-openapiv2/options/openapiv2.proto\"G\n" +
 	"\x14UpdateBalanceRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x16\n" +
 	"\x06amount\x18\x02 \x01(\x01R\x06amount\"p\n" +
