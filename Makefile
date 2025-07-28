@@ -7,7 +7,7 @@ export GOPRIVATE=https://github.com/tovankamil
 # --- Configuration Variables (WAJIB ANDA SESUAIKAN DENGAN LOKASI ASLI DI KOMPUTER ANDA!) ---
 # Definisikan jalur modul untuk file Protobuf Anda.
 # Contoh: Jika wallet.proto Anda ada di lib/protos/v1/wallet/wallet.proto, MODULE harus 'v1/wallet'.
-MODULE ?= v1/wallet
+# MODULE ?= v1/wallet
 
 # Path ke direktori include Protobuf compiler (protoc) di Windows.
 # Ini harus menunjuk ke tempat file .proto standar protoc berada (misalnya, google/protobuf/timestamp.proto).

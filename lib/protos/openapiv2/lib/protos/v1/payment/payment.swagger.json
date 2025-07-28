@@ -1,0 +1,126 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Aplikasimlm.com (Wallet API Endpoint)",
+    "description": "Defines the Protobuf package for this file.\nThis forms the logical namespace for your messages and services.",
+    "version": "1.0",
+    "contact": {
+      "name": "Aplikasimlm.com",
+      "url": "https://github.com/tovankamil",
+      "email": "tovan.kamil@gmail.com"
+    }
+  },
+  "tags": [
+    {
+      "name": "PaymentService"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/payment/transfer": {
+      "post": {
+        "summary": "Transfer User Balance info",
+        "operationId": "TransferBalanceService",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "schema": {
+              "$ref": "#/definitions/e_wallet_microservices_v2TransferBalanceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/e_wallet_microservices_v2TransferBalanceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "payment"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "e_wallet_microservices_v2TransferBalanceRequest": {
+      "type": "object",
+      "properties": {
+        "sourceUserId": {
+          "type": "string",
+          "title": "Source user ID or account"
+        },
+        "destination": {
+          "type": "string",
+          "title": "Destination user ID or account"
+        },
+        "amount": {
+          "type": "number",
+          "format": "double",
+          "title": "Amount to add or deduct"
+        }
+      },
+      "title": "Request message for updating user balance"
+    },
+    "e_wallet_microservices_v2TransferBalanceResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "string",
+          "title": "Unique identifier for the transaction"
+        },
+        "destinationAmout": {
+          "type": "number",
+          "format": "double",
+          "title": "Status of the transfer (e.g., \"success\", \"failed\")"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}
