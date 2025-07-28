@@ -6,8 +6,9 @@ type BalanceResponse struct {
 }
 
 type UpdateBalancePayload struct {
-	UserID string
-	Amount float64
+	UserID      string
+	Amount      float64
+	FinalAmount float64
 }
 
 type DatastoreBalanceResponse struct {
