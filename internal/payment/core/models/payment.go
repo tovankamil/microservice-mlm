@@ -6,12 +6,23 @@ type BalanceResponse struct {
 }
 
 type UpdateBalancePayload struct {
-	UserID      string
-	Amount      float64
-	FinalAmount float64
+	UserID string  `json:"user_id"`
+	Amount float64 `json:"amount"`
 }
 
-type DatastoreBalanceResponse struct {
-	UserID string
-	List   []string
+type TransferBalancePayload struct {
+	SourceUserID string
+	TargetUserID string
+	Amount       float64
+}
+
+type WalletBalanceResp struct {
+	UserId  string `json:"userId"`
+	Balance int    `json:"balance"`
+}
+
+type WalletUpdateResponse struct {
+	Message      string `json:"message"`
+	Success      bool   `json:"success"`
+	FinalBalance int    `json:"finalBalance"`
 }

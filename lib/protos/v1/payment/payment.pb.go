@@ -4,9 +4,6 @@
 // 	protoc        v5.29.2
 // source: lib/protos/v1/payment/payment.proto
 
-// Defines the Protobuf package for this file.
-// This forms the logical namespace for your messages and services.
-
 package payment
 
 import (
@@ -90,8 +87,8 @@ func (x *TransferBalanceRequest) GetAmount() float64 {
 
 type TransferBalanceResponse struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
-	Success          string                 `protobuf:"bytes,1,opt,name=success,proto3" json:"success,omitempty"`                                             // Unique identifier for the transaction
-	DestinationAmout float64                `protobuf:"fixed64,2,opt,name=destination_amout,json=destinationAmout,proto3" json:"destination_amout,omitempty"` // Status of the transfer (e.g., "success", "failed")
+	Success          bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	DestinationAmout float64                `protobuf:"fixed64,2,opt,name=destination_amout,json=destinationAmout,proto3" json:"destination_amout,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -126,11 +123,11 @@ func (*TransferBalanceResponse) Descriptor() ([]byte, []int) {
 	return file_lib_protos_v1_payment_payment_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *TransferBalanceResponse) GetSuccess() string {
+func (x *TransferBalanceResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
-	return ""
+	return false
 }
 
 func (x *TransferBalanceResponse) GetDestinationAmout() float64 {
@@ -150,7 +147,7 @@ const file_lib_protos_v1_payment_payment_proto_rawDesc = "" +
 	"\vdestination\x18\x02 \x01(\tR\vdestination\x12\x16\n" +
 	"\x06amount\x18\x03 \x01(\x01R\x06amount\"`\n" +
 	"\x17TransferBalanceResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\tR\asuccess\x12+\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12+\n" +
 	"\x11destination_amout\x18\x02 \x01(\x01R\x10destinationAmout2\xcb\x02\n" +
 	"\x0ePaymentService\x12\xb8\x02\n" +
 	"\x16TransferBalanceService\x121.e_wallet_microservices_v2.TransferBalanceRequest\x1a2.e_wallet_microservices_v2.TransferBalanceResponse\"\xb6\x01\x92A\x93\x01\n" +

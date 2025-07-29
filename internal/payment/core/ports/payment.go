@@ -7,10 +7,11 @@ import (
 
 // PaymentServiceAdapter - port primary
 type PaymentServiceAdapter interface {
+	TransferUserBalance(ctx context.Context, payload models.TransferBalancePayload) (float64, error)
 }
 
 // PaymentRepositoryAdapter - port secondary
 type PaymentRepositoryAdapter interface {
-	ReadBalanceInfoFromDatastore(ctx context.Context, userID string) (models.DatastoreBalanceResponse, error)
-	AppendBalanceInfoIntoDatastore(ctx context.Context, userID string, amount float64) error
+	ReadBalanceInfoIntoWallet(ctx context.Context, userID string) (float64, error)
+	AppendBalanceInfoIntoWallet(ctx context.Context, userID string, amount float64) error
 }

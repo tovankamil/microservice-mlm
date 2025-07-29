@@ -4,9 +4,6 @@
 // - protoc             v5.29.2
 // source: lib/protos/v1/payment/payment.proto
 
-// Defines the Protobuf package for this file.
-// This forms the logical namespace for your messages and services.
-
 package payment
 
 import (
@@ -29,7 +26,6 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PaymentServiceClient interface {
-	// UpdateUserBalance handles deposits, withdrawals, or other balance adjustments.
 	TransferBalanceService(ctx context.Context, in *TransferBalanceRequest, opts ...grpc.CallOption) (*TransferBalanceResponse, error)
 }
 
@@ -55,7 +51,6 @@ func (c *paymentServiceClient) TransferBalanceService(ctx context.Context, in *T
 // All implementations must embed UnimplementedPaymentServiceServer
 // for forward compatibility.
 type PaymentServiceServer interface {
-	// UpdateUserBalance handles deposits, withdrawals, or other balance adjustments.
 	TransferBalanceService(context.Context, *TransferBalanceRequest) (*TransferBalanceResponse, error)
 	mustEmbedUnimplementedPaymentServiceServer()
 }

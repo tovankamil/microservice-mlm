@@ -22,7 +22,6 @@ const _ = http.SupportPackageIsVersion1
 const OperationPaymentServiceTransferBalanceService = "/e_wallet_microservices_v2.PaymentService/TransferBalanceService"
 
 type PaymentServiceHTTPServer interface {
-	// TransferBalanceService UpdateUserBalance handles deposits, withdrawals, or other balance adjustments.
 	TransferBalanceService(context.Context, *TransferBalanceRequest) (*TransferBalanceResponse, error)
 }
 

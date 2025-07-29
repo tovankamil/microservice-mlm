@@ -2,7 +2,6 @@
   "swagger": "2.0",
   "info": {
     "title": "Aplikasimlm.com (Wallet API Endpoint)",
-    "description": "Defines the Protobuf package for this file.\nThis forms the logical namespace for your messages and services.",
     "version": "1.0",
     "contact": {
       "name": "Aplikasimlm.com",
@@ -84,13 +83,11 @@
       "type": "object",
       "properties": {
         "success": {
-          "type": "string",
-          "title": "Unique identifier for the transaction"
+          "type": "boolean"
         },
         "destinationAmout": {
           "type": "number",
-          "format": "double",
-          "title": "Status of the transfer (e.g., \"success\", \"failed\")"
+          "format": "double"
         }
       }
     },

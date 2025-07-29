@@ -1,0 +1,16 @@
+{
+  "app": {
+    "address": "0.0.0.0:3001",
+    "label": "payment"
+  },
+  "http": {
+    "timeout": "2s"
+  },
+  "remote":{
+    "url": {
+      "hostapp":"wallet",
+      "address": "http://localhost:3002",
+      "timeout": "10s"
+    }
+  }
+}
