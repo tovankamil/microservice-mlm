@@ -1,0 +1,26 @@
+{
+  "app": {
+    "address": "0.0.0.0:3002",
+    "label": "wallet"
+  },
+  "http": {
+    "timeout": "2s"
+  },
+  "redis": {
+    "address": "0.0.0.0:6379",
+    "poolsize": 100
+  },
+  "postgres": {
+    "address": "0.0.0.0",
+    "ports": 5432,
+    "database": "e-wallet-mlm",
+    "username": "postgres",
+    "password": "T0v4n.kamil",
+    "sslmode": "disable",
+    "max_open_connections": "50",
+    "max_idle_connections": "20",
+    "connmaxidletime": "1000",
+    "connmaxlifetime": "1000"
+    
+  }
+}
