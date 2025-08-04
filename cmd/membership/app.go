@@ -16,7 +16,7 @@ func main() {
 	log.SetLogger(logger)
 	log.Info("Starting payment service...")
 
-	cfg, err := cff.InitConfig("config.payment")
+	cfg, err := cff.InitConfig("config.membership")
 	if err != nil {
 		log.Fatalf("failed to parse config, %#v", err)
 	}
